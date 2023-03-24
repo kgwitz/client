@@ -35,6 +35,7 @@ const App = () => {
     <div className='App'>
       <userContext.Provider value={{ userLogin: userLogin, user: user, logout: handleLogout, setUserLogin, setUser }}>
         <Router>
+          <Navigation></Navigation>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={<Home />} />

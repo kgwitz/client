@@ -6,10 +6,16 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+
 import Form from 'react-bootstrap/Form'
-import { Login, CreateUser } from '../../ApiRequests'
+import { } from '../../ApiRequests'
+import {
+    Navbar,
+    Nav,
+    NavItem,
+    NavDropdown,
+        MenuItem
+} from 'react-bootstrap';
 
 
 const Navigation = () => {
@@ -41,48 +47,48 @@ const Navigation = () => {
         localStorage.setItem('userName', '')
     }
 
-    const handleLogin = async () => {
-        const res = await Login({ userName: userNameState, password: password })
+    // const handleLogin = async () => {
+    //     const res = await Login({ userName: userNameState, password: password })
 
-        if (res.length > 0) {
-            console.log("logged in", res)
-            localStorage.setItem('userName', res[0].userName)
+    //     if (res.length > 0) {
+    //         console.log("logged in", res)
+    //         localStorage.setItem('userName', res[0].userName)
 
-            setShow(false)
+    //         setShow(false)
 
-            setUserLogin(true)
+    //         setUserLogin(true)
 
-            console.log('response', res)
-            console.log('setting username', res[0].userName)
-            // setUserName(res[0].userName)
-            setUser({ userName: res[0].userName, _id: res[0]._id })
-            localStorage.setItem('userId', res[0]._id)
-            localStorage.setItem('userName', res[0].userName)
-            return
-        } else {
-            setShowConfirmModal(true)
-            console.log("COULD NOT LOGIN")
-        }
-    }
+    //         console.log('response', res)
+    //         console.log('setting username', res[0].userName)
+    //         // setUserName(res[0].userName)
+    //         setUser({ userName: res[0].userName, _id: res[0]._id })
+    //         localStorage.setItem('userId', res[0]._id)
+    //         localStorage.setItem('userName', res[0].userName)
+    //         return
+    //     } else {
+    //         setShowConfirmModal(true)
+    //         console.log("COULD NOT LOGIN")
+    //     }
+    // }
 
-    const handleCreateAccount = async () => {
-        const data = {
-            userName: userNameState,
-            password: password
-        }
-        const res = await CreateUser(data)
-        console.log(res)
+    // const handleCreateAccount = async () => {
+    //     const data = {
+    //         userName: userNameState,
+    //         password: password
+    //     }
+    //     const res = await CreateUser(data)
+    //     console.log(res)
 
-        if (res) {
-            setShowConfirmModal(true)
-        }
-    }
+    //     if (res) {
+    //         setShowConfirmModal(true)
+    //     }
+    // }
 
     return (
         <div className="navigation">
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <div className="d-flex flex-row w-100 justify-content-end">
-                    <NavLink className="navbar-brand" to="/">
+            <nav className="navbar navbar-expand navbar-dark bg-light">
+                {/* <div className="d-flex flex-row w-100 justify-content-end"> */}
+                {/* <NavLink className="navbar-brand" to="/">
                         logo
                     </NavLink>
                     <div className='mr-2'>
@@ -129,8 +135,30 @@ const Navigation = () => {
 
                         }
                     </div>
-                </div>
-                <Modal show={show} onHide={handleLoginModalClose}>
+                </div> */}
+
+                <Navbar bg="light" expand="lg" style={{paddingLeft: '4rem'}}>
+                    <Container>
+                        <Navbar.Brand href="#home">SLVSH BRACKET</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="me-auto">
+                                <Nav.Link>Home</Nav.Link>
+                                <NavDropdown title="My Bracket" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="#action/3.1">Round of 16</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.2">Quarter Final</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.3">Semi Final</NavDropdown.Item>
+                                    <NavDropdown.Item href="#action/3.4">Final</NavDropdown.Item>
+                                </NavDropdown>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+
+
+
+
+                {/* <Modal show={show} onHide={handleLoginModalClose}>
                     <Modal.Header>
                         <Modal.Title>Sign In</Modal.Title>
                     </Modal.Header>
@@ -168,7 +196,7 @@ const Navigation = () => {
                             }
                         </div>
                     </Modal.Body>
-                </Modal>
+                </Modal> */}
                 {/* {showConfirmModal &&
                     <ConfirmModal
                         showModal={showConfirmModal}
