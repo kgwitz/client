@@ -9,7 +9,6 @@ import Home from "./Components/Home/Home"
 import LoginPage from "./Components/Login/Login"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { userContext } from './Components/userContext'
 
 const App = () => {
   const [userLogin, setUserLogin] = useState(false)
@@ -23,6 +22,7 @@ const App = () => {
     setUserLogin(true)
   }
 
+  //NOT IN USE
   useEffect(() => {
     if (localStorage.getItem('userId') && localStorage.getItem('userId') != '') {
       const userId = localStorage.getItem('userId')
@@ -46,7 +46,6 @@ const App = () => {
           </Routes>
         </Router>
 
-        <Footer />
       {/* </userContext.Provider> */}
     </div>
   );

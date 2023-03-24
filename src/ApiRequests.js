@@ -30,7 +30,6 @@ const Login = async (userName, password) => {
 }
 
 const CreateUser = async (data) => {
-    console.log('data', data)
     const res = await Axios.post(`${URL}/CreateUser`, data)
 
     if (res) {
@@ -41,12 +40,40 @@ const CreateUser = async (data) => {
 }
 
 const GetUser = async (id) => {
-    console.log('getting users')
+    const res = await Axios.get(`${URL}/User`, {params: {id: id}})
+
+    if (res) {
+        return res
+    } else {
+        console.log('could not find user with id:', id)
+    }
 } 
+
+const UpdateUser = async (user) => {
+    const res = await Axios.put(`${URL}/User`, user)
+
+    if (res) {
+        return res
+    } else {
+        console.log('User was not updated')
+    }
+}
+
+const GetLeaderboard = async () => {
+    const res = await Axios.get(`${URL}/Leaderboard`)
+
+    if (res) {
+        return res
+    } else {
+        console.log('no leaderboard')
+    }
+}
 
 export {
     GetMatchups,
     Login,
     GetUser,
     CreateUser,
+    UpdateUser,
+    GetLeaderboard,
 }
