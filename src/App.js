@@ -19,6 +19,10 @@ const App = () => {
     setUserLogin(false)
   }
 
+  const handleLogin = () => {
+    setUserLogin(true)
+  }
+
   useEffect(() => {
     if (localStorage.getItem('userId') && localStorage.getItem('userId') != '') {
       const userId = localStorage.getItem('userId')
@@ -33,17 +37,17 @@ const App = () => {
 
   return (
     <div className='App'>
-      <userContext.Provider value={{ userLogin: userLogin, user: user, logout: handleLogout, setUserLogin, setUser }}>
+      {/* <userContext.Provider value={{ userLogin: userLogin, user: user, logout: handleLogout, setUserLogin, setUser }}> */}
         <Router>
-          <Navigation></Navigation>
+          <Navigation userLogin={userLogin} handleLogout={handleLogout}></Navigation>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/" element={<LoginPage userLogin={userLogin} handleLogin={handleLogin}/>} />
             <Route path="/home" element={<Home />} />
           </Routes>
         </Router>
 
         <Footer />
-      </userContext.Provider>
+      {/* </userContext.Provider> */}
     </div>
   );
 }

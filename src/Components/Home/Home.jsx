@@ -2,10 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
 import Dropdown from 'react-bootstrap/Dropdown'
-import { GetMatchups } from '../../ApiRequests'
+import { GetMatchups, GetUser } from '../../ApiRequests'
 
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
+
 
 function Home() {
 
@@ -17,7 +18,7 @@ function Home() {
 
     useEffect(() => {
         getMatchups()
-
+        // getUser()
     }, [])
 
     //Get all available matchups
@@ -25,6 +26,12 @@ function Home() {
         const response = await GetMatchups()
         setMatchups(response.data)
     }
+
+    //Get users current matchups 
+    const getUser = async () => {
+        const response = await GetUser('id')
+    }
+
 
     const handleClickVote = (matchup) => {
         setSelectedWinner('')
